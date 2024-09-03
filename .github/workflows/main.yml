@@ -25,5 +25,5 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        tags: sanlogu22/guestbook -image:latest
+        tags: sanlogu22/guestbook-image:latest
 
