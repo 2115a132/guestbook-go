@@ -12,19 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.10.0
+# Stage 1: Build the Go application
+FROM golang:1.10.0 AS builder
+
+# Install dependencies
 RUN go get github.com/codegangsta/negroni \
            github.com/gorilla/mux \
            github.com/xyproto/simpleredis/v2
+
+# Set the working directory inside the container
 WORKDIR /app
+
+# Add the Go source code to the working directory
 ADD ./main.go .
+
+# Build the Go application with specific build flags
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
+# Stage 2: Create the final lightweight image
 FROM scratch
+
+# Set the working directory inside the container
 WORKDIR /app
-COPY --from=0 /app/main .
-COPY ./public/index.html public/index.html
-COPY ./public/script.js public/script.js
-COPY ./public/style.css public/style.css
+
+# Copy the compiled Go binary from the builder stage
+COPY --from=builder /app/main .
+
+# Copy the public directory with all its contents
+COPY ./public /app/public
+
+# Set the command to run the Go application
 CMD ["/app/main"]
+
+# Expose port 3000 to allow external connections
 EXPOSE 3000
+
