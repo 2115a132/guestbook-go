@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build -t sanlogu22/guestbook-go -f guestbook-go/Dockerfile .
+      run: docker build -t <your_dockerhub_username>/guestbook-go -f path/to/Dockerfile .
 
 
     - name: Push the Docker image to Docker Hub
