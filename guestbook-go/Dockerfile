@@ -24,7 +24,7 @@ RUN go get github.com/codegangsta/negroni \
 WORKDIR /app
 
 # Add the Go source code to the working directory
-ADD ./main.go .
+ADD ./guestbook-go/main.go .
 
 # Build the Go application with specific build flags
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
