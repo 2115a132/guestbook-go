@@ -40,6 +40,8 @@ COPY --from=builder /app/main .
 
 # Copy the public directory with all its contents
 COPY ./guestbook-go/public/style.css public/style.css
+COPY ./guestbook-go/public/index.html public/index.html
+COPY ./guestbook-go/public/script.js public/script.js
 
 # Set the command to run the Go application
 CMD ["/app/main"]
