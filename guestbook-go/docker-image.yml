@@ -22,8 +22,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: List directory contents
+      run: ls -la
+ 
+    - name: List directory contents
+      run: pwd
+
     - name: Build the Docker image
-      run: docker build -t sanlogu22/guestbook-go -f guestbook-go/Dockerfile .
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/guestbook-go -f guestbook-go/Dockerfile .
 
     - name: Push the Docker image to Docker Hub
-      run: docker push sanlogu22/guestbook-go
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/guestbook-go
