@@ -26,7 +26,7 @@ jobs:
       run: pwd
 
     - name: Build the Docker image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/guestbook-go -f guestbook-go/Dockerfile .
+      run: docker build -t sanlogu22/guestbook-go .
 
     - name: Push the Docker image to Docker Hub
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/guestbook-go
