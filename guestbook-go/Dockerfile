@@ -39,7 +39,7 @@ WORKDIR /app
 COPY --from=builder /app/main .
 
 # Copy the public directory with all its contents
-COPY ../public /app/public
+COPY ./guestbook-go/public/style.css public/style.css
 
 # Set the command to run the Go application
 CMD ["/app/main"]
